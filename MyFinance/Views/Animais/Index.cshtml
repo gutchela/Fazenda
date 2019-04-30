@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Animais</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>ID Animal</th>
+            <th>Nome</th>
+            <th>Data Nascimento</th>
+            <th>Nome da Mãe</th>
+            <th>Nome do Pai</th>
+            <th>Sexo</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var item in (List<AnimaisModel>)ViewBag.ListaAnimais)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        <button type="button" class="btn-primary">Editar</button>
+                        <button type="button" class="btn-danger">Excluir</button>
+                    </td>
+                    <td>@item.idAnimais.ToString()</td>
+                    <td>@Html.ActionLink(@item.Nome.ToString(), "Details", new { })</td>
+                    <td>@item.DataNascimento.ToString()</td>
+                    <td>@item.NomeMae.ToString()</td>
+                    <td>@item.NomePai.ToString()</td>
+                    <td>@item.Sexo.ToString()</td>
+                    <td>@Html.ActionLink("Detalhes", "Details", new { })</td>
+                </tr>
+            </tbody>
+        }
+    }
+</table>
+<button type="button" class="btn btn-block btn-primary" onclick="CadastrarAnimal()">Cadastrar novo Animal</button>
+<script>
+    function CadastrarAnimal() {
+        window.location.href = "../Animais/Cadastrar/";
+    }
+
+    function Excluir(id) {
+        window.location.href = "../Transacao/ExcluirTransacao/" + id;
+    }
+    function Editar(id) {
+        window.location.href = "../Transacao/Registrar/" + id;
+    }
+
+</script>

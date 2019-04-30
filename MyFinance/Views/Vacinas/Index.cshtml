@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Campanhas de Vacinação</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var item in (List<VacinaModel>)ViewBag.ListaVacina)
+        {
+            <tbody>
+                <tr>
+                    <td><button type="button" class="btn btn-danger" onclick="Excluir(@item.IdVacina.ToString())">Excluir</button></td>
+                    <td>@Html.ActionLink(@item.IdVacina.ToString(), "Details", new { })</td>
+                    <td>@item.Descricao.ToString()</td>
+                    <td>R$ @item.Data.ToString()</td>
+                </tr>
+
+            </tbody>
+        }
+
+    }
+
+</table>
+<button type="button" class="btn btn-block btn-primary" onclick="CriarVacina()">Criar Campanha de Vacinação</button>
+<script>
+    function CriarVacina() {
+        window.location.href = "../Vacinas/CriarVacina";
+    }
+
+    function Excluir(id_conta) {
+        window.location.href = "../Vacinas/ExcluirConta/" + id_conta;
+    }
+</script>

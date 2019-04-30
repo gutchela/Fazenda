@@ -15,43 +15,28 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+  
 </head>
-<body onload="CarregarUsuarioLogado()">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Menu" class="navbar-brand">MyFinance</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                @using Microsoft.AspNetCore.Http;
-                @inject IHttpContextAccessor HttpContextAccessor
-                <div id="NomeUsuarioLogado"></div>
-            </div>
-           
-        </div>
-        
-    </nav>
+<body>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            /* The image used */
+            background-image: url('../../images/leite3.jpg');
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+       
+    </style>
 
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content" style="padding-top:25px">
+    <div class="container body-content" >
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - MyFinance</p>
-        </footer>
-    </div>
+       </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -76,21 +61,7 @@
 
     @RenderSection("Scripts", required: false)
 </body>
-<script>
-    function CarregarUsuarioLogado() {
-        var nome = '@HttpContextAccessor.HttpContext.Session.GetString("NomeUsuarioLogado")'
-        if (nome != "") {
-            var divNome = document.getElementById("NomeUsuarioLogado");
-            divNome.innerHTML = "Olá " + nome + "<a href='../Usuario/Login/0'> [Sair] ";
-            divNome.style = "color:#ffffff; text-align: right; height:50px; padding-top13px;"
-        }
-        else {
-            window.location.href='../Usuario/Login'
-        }
 
-    }
- 
-</script>
 
 
 </html>

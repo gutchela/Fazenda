@@ -1,0 +1,45 @@
+﻿
+@model AnimaisModel
+
+
+<h2>Cadastar um novo Animal</h2>
+
+@{ var vDataNascimento = "";
+    var vIdAnimais = 0;
+    var vNome = "";
+    var vNomeMae = "";
+    var vNomePai = "";
+    var vSexo = 0.0;
+    var vUsuario_id = 0;
+    <!-- var vId = 0;-->
+
+
+    try
+    {
+        vIdAnimais = int.Parse(ViewBag.Registro.Id.ToString());
+        //vId = int.Parse(ViewBag.Registro.Id.ToString());
+        vDataNascimento = DateTime.Parse(ViewBag.Registro.Data).ToString("yyyy-MM-dd");
+        vNome = @ViewBag.Registro.Descricao.ToString();
+        vNomeMae = @ViewBag.Registro.Descricao.ToString();
+        vNomePai = @ViewBag.Registro.Descricao.ToString();
+        vSexo = @ViewBag.Registro.Descricao.ToString();
+        vUsuario_id = int.Parse(ViewBag.Registro.Id.ToString());
+    }
+    catch
+    {
+
+    }
+}
+
+<form asp-controller="Animais" asp-action="Cadastrar">
+   
+
+    <div class="form-group">
+        <label>Id Animal:</label>
+        <input type="number" class="form-control" asp-for="idAnimais" value="@vIdAnimais">
+        <span asp-validation-for="idAnimais" class="text-danger"></span>
+    </div>
+ 
+    </div>
+    <button type="submit" class="btn btn-block btn-success">Registrar</button>
+</form>
